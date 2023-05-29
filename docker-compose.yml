@@ -45,7 +45,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/victhun/node_project/views/
+      device: /root/NeuroMIDI/views/
       o: bind
 
 networks:
