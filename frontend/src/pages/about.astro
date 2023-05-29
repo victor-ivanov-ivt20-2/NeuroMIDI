@@ -1,0 +1,33 @@
+---
+import "@fontsource/montserrat";
+// import MainComponent from "../components/main";
+import Header from "../components/header.astro";
+---
+
+<style is:global>
+    body {
+        font-family: "Montserrat", sans-serif;
+    }
+    .my_container {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+    li {
+        list-style: none;
+    }
+</style>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon2.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>О проекте - NeuroMIDI</title>
+    </head>
+    <body>
+        <Header />
+        <main>
+            <div class="my_container">about</div>
+        </main>
+    </body>
+</html>

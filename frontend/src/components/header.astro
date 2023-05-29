@@ -1,0 +1,34 @@
+---
+import { Image } from "@astrojs/image/components";
+import logo from "../assets/logo.svg";
+---
+
+<header class="border-2 mb-5">
+    <div class="my_container">
+        <div
+            class="flex justify-between items-center px-2 h-[115px] sm:px-[0px]"
+        >
+            <a href="/">
+                <Image src={logo} width={132} height={80} alt="LOGO" />
+            </a>
+            <nav>
+                <ul class="hidden sm:flex gap-8 font-medium text-lg">
+                    <li>
+                        <a href="/">ГЛАВНАЯ</a>
+                    </li>
+                    <li>
+                        <a href="/about">О ПРОЕКТЕ</a>
+                    </li>
+                    <li>
+                        <a href="/contacts">КОНТАКТЫ</a>
+                    </li>
+                </ul>
+                <button class="sm:hidden flex gap-[6px] mr-2 flex-col">
+                    <div class="h-[6px] w-[40px] bg-black"></div>
+                    <div class="h-[6px] w-[40px] bg-black"></div>
+                    <div class="h-[6px] w-[40px] bg-black"></div>
+                </button>
+            </nav>
+        </div>
+    </div>
+</header>
