@@ -6,10 +6,11 @@ const { exec } = require('child_process')
 // app.use(cors({
 //     origin: ["http://localhost:3000"]
 // }))
+const path = __dirname + '/views/'
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-    res.send("Hello World!")
+    res.sendFile(path + 'index.html')
 })
 
 // app.get('/', (req, res) => {

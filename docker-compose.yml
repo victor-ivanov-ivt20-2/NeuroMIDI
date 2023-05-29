@@ -45,7 +45,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/sammy/node_project/views/
+      device: /home/victhun/node_project/views/
       o: bind
 
 networks:
