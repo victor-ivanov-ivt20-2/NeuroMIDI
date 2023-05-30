@@ -1,17 +1,17 @@
-const express = require('express')
-const app = express()
-const PORT = 8080
-const cors = require('cors')
-const { exec } = require('child_process')
-// app.use(cors({
-//     origin: ["http://localhost:3000"]
-// }))
-const path = __dirname + '/views/'
-app.use(express.static('public'))
+const express = require("express");
+const path = require("path");
 
-app.get('/', (req, res) => {
-    res.sendFile(path + 'index.html')
-})
+const app = express();
+const PORT = 8080;
+const { exec } = require("child_process");
+
+app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "pug");
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname + "/views/index.html"));
+});
 
 // app.get('/', (req, res) => {
 //     exec('python __init__.py')
@@ -19,5 +19,5 @@ app.get('/', (req, res) => {
 // })
 
 app.listen(PORT, () => {
-    console.log(`Сервер запущен на порту ${PORT}. . .`)
-})
+  console.log(`Сервер запущен на порту ${PORT}. . .`);
+});

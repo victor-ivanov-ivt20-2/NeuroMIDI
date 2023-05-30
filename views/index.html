@@ -1,20 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroMidi: Создай midi с NeuroMidi</title>
-</head>
-<body>
-    <header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/normalize.css" />
+    <link rel="stylesheet" href="./styles/tailwind.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
 
+    <title>NeuroMidi: Создай midi с NeuroMidi</title>
+  </head>
+  <body>
+    <header class="border-2 mb-5">
+      <div class="my_container">
+        <div
+          class="flex justify-between items-center px-2 h-[115px] sm:px-[0px]"
+        >
+          <a href="/">
+            <image src="./assets/logo.svg" width="132" height="80" alt="LOGO" />
+          </a>
+          <nav>
+            <ul class="hidden sm:flex gap-8 font-medium text-lg">
+              <li>
+                <a href="#main">ГЛАВНАЯ</a>
+              </li>
+              <li>
+                <a href="#about">О ПРОЕКТЕ</a>
+              </li>
+              <li>
+                <a href="#contacts">КОНТАКТЫ</a>
+              </li>
+            </ul>
+            <button class="sm:hidden flex gap-[6px] mr-2 flex-col">
+              <div class="h-[6px] w-[40px] bg-black"></div>
+              <div class="h-[6px] w-[40px] bg-black"></div>
+              <div class="h-[6px] w-[40px] bg-black"></div>
+            </button>
+          </nav>
+        </div>
+      </div>
     </header>
     <main>
-        hello
+      <div class="my_container">
+        <section id="main"></section>
+
+        <section id="about"></section>
+
+        <section id="contacts"></section>
+      </div>
     </main>
-    <footer>
-        
-    </footer>
-</body>
+    <footer></footer>
+  </body>
 </html>
