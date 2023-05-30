@@ -11,7 +11,7 @@
     <title>NeuroMidi: Создай midi с NeuroMidi</title>
   </head>
   <body>
-    <header class="border-2 mb-5">
+    <header class="border-b-2 mb-5 relative bg-white" style="z-index: 100">
       <div class="my_container">
         <div
           class="flex justify-between items-center px-2 h-[115px] sm:px-[0px]"
@@ -31,7 +31,10 @@
                 <a href="#contacts">КОНТАКТЫ</a>
               </li>
             </ul>
-            <button class="sm:hidden flex gap-[6px] mr-2 flex-col">
+            <button
+              class="sm:hidden flex gap-[6px] mr-2 flex-col"
+              onclick="openNavMenu()"
+            >
               <div class="h-[6px] w-[40px] bg-black"></div>
               <div class="h-[6px] w-[40px] bg-black"></div>
               <div class="h-[6px] w-[40px] bg-black"></div>
@@ -40,6 +43,17 @@
         </div>
       </div>
     </header>
+    <ul id="MobileNavMenu" class="mobile__nav__menu" style="top: -50px">
+      <li>
+        <a href="#main">ГЛАВНАЯ</a>
+      </li>
+      <li>
+        <a href="#about">О ПРОЕКТЕ</a>
+      </li>
+      <li>
+        <a href="#contacts">КОНТАКТЫ</a>
+      </li>
+    </ul>
     <main>
       <div class="my_container">
         <section id="main"></section>
@@ -50,5 +64,15 @@
       </div>
     </main>
     <footer></footer>
+    <script>
+      function openNavMenu() {
+        var x = document.getElementById("MobileNavMenu");
+        if (x.style.top === "-50px") {
+          x.style.top = "115px";
+        } else {
+          x.style.top = "-50px";
+        }
+      }
+    </script>
   </body>
 </html>
