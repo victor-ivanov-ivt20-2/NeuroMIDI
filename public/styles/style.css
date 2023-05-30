@@ -485,14 +485,38 @@ video {
 .left-0 {
   left: 0px;
 }
+.left-\[160px\] {
+  left: 160px;
+}
+.left-\[204px\] {
+  left: 204px;
+}
+.left-\[248px\] {
+  left: 248px;
+}
+.left-\[28px\] {
+  left: 28px;
+}
+.left-\[72px\] {
+  left: 72px;
+}
+.-z-10 {
+  z-index: -10;
+}
 .z-10 {
   z-index: 10;
 }
 .mb-5 {
   margin-bottom: 1.25rem;
 }
+.ml-\[6px\] {
+  margin-left: 6px;
+}
 .mr-2 {
   margin-right: 0.5rem;
+}
+.mt-1 {
+  margin-top: 0.25rem;
 }
 .block {
   display: block;
@@ -503,17 +527,35 @@ video {
 .hidden {
   display: none;
 }
+.h-10 {
+  height: 2.5rem;
+}
 .h-\[115px\] {
   height: 115px;
+}
+.h-\[28px\] {
+  height: 28px;
 }
 .h-\[6px\] {
   height: 6px;
 }
+.h-full {
+  height: 100%;
+}
 .w-\[100dvw\] {
   width: 100dvw;
 }
+.w-\[28px\] {
+  width: 28px;
+}
+.w-\[320px\] {
+  width: 320px;
+}
 .w-\[40px\] {
   width: 40px;
+}
+.w-full {
+  width: 100%;
 }
 .flex-col {
   flex-direction: column;
@@ -524,24 +566,25 @@ video {
 .justify-between {
   justify-content: space-between;
 }
-.gap-5 {
-  gap: 1.25rem;
-}
 .gap-8 {
   gap: 2rem;
 }
 .gap-\[6px\] {
   gap: 6px;
 }
+.border-2 {
+  border-width: 2px;
+}
 .border-b-2 {
   border-bottom-width: 2px;
+}
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-.bg-black\/20 {
-  background-color: rgb(0 0 0 / 0.2);
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -555,12 +598,19 @@ video {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+.text-center {
+  text-align: center;
+}
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
 .font-medium {
   font-weight: 500;
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 .transition-all {
   transition-property: all;
@@ -577,6 +627,95 @@ video {
 .my_container {
   max-width: 640px;
   margin: 0 auto;
+}
+.midi__base {
+  background: linear-gradient(180deg, #434343 25.91%, #000000 100%);
+  box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.25);
+}
+.white__note {
+  display: flex;
+  height: 176px;
+  width: 2.75rem;
+  cursor: pointer;
+  flex-direction: column-reverse;
+  align-items: center;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  --tw-shadow: inset 0px -2px 0px 2px rgba(0, 0, 0, 0.25);
+  --tw-shadow-colored: inset 0px -2px 0px 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.black_note {
+  position: absolute;
+  display: flex;
+  height: 116px;
+  width: 2rem;
+  cursor: pointer;
+  flex-direction: column-reverse;
+  align-items: center;
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  box-shadow: inset 0px -8px 0px 3px rgba(255, 255, 255, 0.25);
+}
+.get__melody__form label {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column-reverse;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+.white__note:has(> input:checked) {
+  display: flex;
+  height: 176px;
+  width: 2.75rem;
+  cursor: pointer;
+  flex-direction: column-reverse;
+  align-items: center;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  background: linear-gradient(
+    179.8deg,
+    #959595 0.18%,
+    rgba(205, 205, 205, 0) 120.8%
+  );
+  box-shadow: inset 0px 2px 0px 4px rgba(0, 0, 0, 0.25);
+}
+.black_note:has(> input:checked) {
+  position: absolute;
+  display: flex;
+  height: 116px;
+  width: 2rem;
+  cursor: pointer;
+  flex-direction: column-reverse;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  --tw-shadow: inset 0px -3px 0px 3px rgba(255, 255, 255, 0.15);
+  --tw-shadow-colored: inset 0px -3px 0px 3px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  background: linear-gradient(180deg, #3f3f3f 0%, #000000 100%);
+}
+
+.get__melody__form label {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 @media (min-width: 640px) {

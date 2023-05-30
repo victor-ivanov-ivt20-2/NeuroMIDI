@@ -6,3 +6,34 @@
   max-width: 640px;
   margin: 0 auto;
 }
+.midi__base {
+  background: linear-gradient(180deg, #434343 25.91%, #000000 100%);
+  box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.25);
+}
+.white__note {
+  @apply flex flex-col-reverse bg-white items-center cursor-pointer text-2xl font-bold w-11 h-[176px] shadow-wnote;
+}
+.black_note {
+  @apply flex flex-col-reverse items-center cursor-pointer text-base font-bold absolute w-8 h-[116px] bg-black text-white;
+  box-shadow: inset 0px -8px 0px 3px rgba(255, 255, 255, 0.25);
+}
+.get__melody__form label {
+  @apply flex flex-col-reverse text-center pb-4 w-full h-full;
+}
+.white__note:has(> input:checked) {
+  @apply flex flex-col-reverse bg-white items-center cursor-pointer text-2xl font-bold w-11 h-[176px];
+  background: linear-gradient(
+    179.8deg,
+    #959595 0.18%,
+    rgba(205, 205, 205, 0) 120.8%
+  );
+  box-shadow: inset 0px 2px 0px 4px rgba(0, 0, 0, 0.25);
+}
+.black_note:has(> input:checked) {
+  @apply flex flex-col-reverse items-center cursor-pointer text-base font-bold absolute w-8 h-[116px] text-white shadow-bnote;
+  background: linear-gradient(180deg, #3f3f3f 0%, #000000 100%);
+}
+
+.get__melody__form label {
+  @apply cursor-pointer select-none;
+}
