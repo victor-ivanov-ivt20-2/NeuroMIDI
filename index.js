@@ -19,5 +19,5 @@ app.get("/", (req, res) => {
 // })
 
 app.listen(PORT, () => {
-  console.log(`Сервер запущен на порту ${PORT}. . .`);
+  console.log(`Сервер запущен на порте ${PORT}: http://localhost:${PORT}/`);
 });

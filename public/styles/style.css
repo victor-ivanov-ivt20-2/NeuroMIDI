@@ -476,14 +476,26 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.absolute {
+  position: absolute;
+}
 .relative {
   position: relative;
+}
+.left-0 {
+  left: 0px;
+}
+.z-10 {
+  z-index: 10;
 }
 .mb-5 {
   margin-bottom: 1.25rem;
 }
 .mr-2 {
   margin-right: 0.5rem;
+}
+.block {
+  display: block;
 }
 .flex {
   display: flex;
@@ -497,6 +509,9 @@ video {
 .h-\[6px\] {
   height: 6px;
 }
+.w-\[100dvw\] {
+  width: 100dvw;
+}
 .w-\[40px\] {
   width: 40px;
 }
@@ -508,6 +523,9 @@ video {
 }
 .justify-between {
   justify-content: space-between;
+}
+.gap-5 {
+  gap: 1.25rem;
 }
 .gap-8 {
   gap: 2rem;
@@ -522,6 +540,9 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
+.bg-black\/20 {
+  background-color: rgb(0 0 0 / 0.2);
+}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -530,6 +551,10 @@ video {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -537,25 +562,23 @@ video {
 .font-medium {
   font-weight: 500;
 }
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.duration-300 {
+  transition-duration: 300ms;
+}
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 .my_container {
   max-width: 640px;
   margin: 0 auto;
 }
-.mobile__nav__menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100dvw;
-  gap: 20px;
-  padding: 24px 0;
-  background: rgba(0, 0, 0, 0.2);
-  transition: all 0.3s;
-  z-index: 10;
-  position: absolute;
-  left: 0;
-}
+
 @media (min-width: 640px) {
 
   .sm\:flex {

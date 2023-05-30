@@ -6,17 +6,3 @@
   max-width: 640px;
   margin: 0 auto;
 }
-.mobile__nav__menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100dvw;
-  gap: 20px;
-  padding: 24px 0;
-  background: rgba(0, 0, 0, 0.2);
-  transition: all 0.3s;
-  z-index: 10;
-  position: absolute;
-  left: 0;
-}

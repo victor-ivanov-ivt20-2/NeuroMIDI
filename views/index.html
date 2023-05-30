@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles/normalize.css" />
     <link rel="stylesheet" href="./styles/tailwind.css" />
     <link rel="stylesheet" href="./styles/style.css" />
-
+    <link rel="shortcut icon" href="./favicon.svg" type="image/x-icon" />
     <title>NeuroMidi: Создай midi с NeuroMidi</title>
   </head>
   <body>
@@ -31,27 +31,33 @@
                 <a href="#contacts">КОНТАКТЫ</a>
               </li>
             </ul>
-            <button
-              class="sm:hidden flex gap-[6px] mr-2 flex-col"
-              onclick="openNavMenu()"
-            >
-              <div class="h-[6px] w-[40px] bg-black"></div>
-              <div class="h-[6px] w-[40px] bg-black"></div>
-              <div class="h-[6px] w-[40px] bg-black"></div>
+            <button class="sm:hidden flex mr-2" onclick="openNavMenu()">
+              <div class="flex gap-[6px] flex-col" id="NavMenuOpenButton">
+                <div class="h-[6px] w-[40px] bg-black"></div>
+                <div class="h-[6px] w-[40px] bg-black"></div>
+                <div class="h-[6px] w-[40px] bg-black"></div>
+              </div>
+              <div id="NavMenuExitButton" style="display: none">
+                <img src="/assets/exit.svg" alt="" width="40" />
+              </div>
             </button>
           </nav>
         </div>
       </div>
     </header>
-    <ul id="MobileNavMenu" class="mobile__nav__menu" style="top: -50px">
+    <ul
+      id="MobileNavMenu"
+      class="absolute left-0 bg-black/20 flex flex-col justify-between items-center w-[100dvw] gap-5 py-6 transition-all duration-300 ease-in-out z-10"
+      style="top: -50px"
+    >
       <li>
-        <a href="#main">ГЛАВНАЯ</a>
+        <a onclick="openNavMenu()" href="#main">ГЛАВНАЯ</a>
       </li>
       <li>
-        <a href="#about">О ПРОЕКТЕ</a>
+        <a onclick="openNavMenu()" href="#about">О ПРОЕКТЕ</a>
       </li>
       <li>
-        <a href="#contacts">КОНТАКТЫ</a>
+        <a onclick="openNavMenu()" href="#contacts">КОНТАКТЫ</a>
       </li>
     </ul>
     <main>
@@ -66,11 +72,17 @@
     <footer></footer>
     <script>
       function openNavMenu() {
-        var x = document.getElementById("MobileNavMenu");
+        const x = document.getElementById("MobileNavMenu");
+        const o = document.getElementById("NavMenuOpenButton");
+        const e = document.getElementById("NavMenuExitButton");
         if (x.style.top === "-50px") {
           x.style.top = "115px";
+          e.style.display = "block";
+          o.style.display = "none";
         } else {
           x.style.top = "-50px";
+          e.style.display = "none";
+          o.style.display = "flex";
         }
       }
     </script>
