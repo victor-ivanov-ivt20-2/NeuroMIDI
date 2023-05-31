@@ -77,12 +77,15 @@
           <div>
             <form class="get__melody__form" onsubmit="">
               <div class="flex items-center flex-col relative">
-                <div class="midi__base w-[320px] h-10 bg-black">
+                <div
+                  class="flex gap-4 items-center midi__base w-[320px] h-10 bg-black"
+                >
                   <div
-                    class="w-[28px] h-[28px] border-2 border-white bg-black text-white ml-[6px] mt-1 text-center"
+                    class="w-[28px] h-[28px] border-2 border-white bg-black text-white ml-[6px] text-center"
                   >
-                    <p id="ChoosedNote"></p>
+                    <span id="ChoosedNote"></span>
                   </div>
+                  <span class="text-white">Выберите ноту тональности</span>
                 </div>
                 <div class="flex relative">
                   <div class="white__note">

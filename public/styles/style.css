@@ -566,6 +566,9 @@ video {
 .justify-between {
   justify-content: space-between;
 }
+.gap-4 {
+  gap: 1rem;
+}
 .gap-8 {
   gap: 2rem;
 }
@@ -685,11 +688,7 @@ video {
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 700;
-  background: linear-gradient(
-    179.8deg,
-    #959595 0.18%,
-    rgba(205, 205, 205, 0) 120.8%
-  );
+  background: linear-gradient(180deg, #959595 0%, #ffffff 100%);
   box-shadow: inset 0px 2px 0px 4px rgba(0, 0, 0, 0.25);
 }
 .black_note:has(> input:checked) {
