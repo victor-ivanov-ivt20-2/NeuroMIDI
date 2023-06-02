@@ -66,7 +66,7 @@ class Midi:
         return output_messages
                 
 
-    def save(self):
+    def save(self, arr = []):
         output_midi = md.MidiFile()
         track = md.MidiTrack()
         output_midi.tracks.append(track)
@@ -76,4 +76,5 @@ class Midi:
         for msg in messages:
             track.append(msg)
         output_midi.save(os.getcwd() + '/generated_midi/new_midi.mid')
-        output_midi.save(os.getcwd() + '/public/new_midi.mid')
+        name = "{0}_{1}_{2}_{3}".format(arr[1], arr[2], arr[3], arr[4])
+        output_midi.save(os.getcwd() + '/public/midi/' + name + '.mid')

@@ -73,9 +73,11 @@
     </ul>
     <main>
       <div class="my_container flex flex-col items-center">
-        <section id="main">
-          <div>
-            <form class="get__melody__form" onsubmit="">
+        <section class="sm:w-full" id="main">
+          <div class="sm:w-full">
+            <div
+              class="get__melody__form sm:w-full sm:flex sm:justify-between sm:gap-4"
+            >
               <div class="flex items-center flex-col relative">
                 <div
                   class="flex gap-4 items-center midi__base w-[320px] h-10 bg-black"
@@ -223,7 +225,34 @@
                 </div>
                 <div class="absolute bg-black -z-10 w-full h-full"></div>
               </div>
-            </form>
+              <div
+                class="flex flex-col justify-between mt-3 sm:mt-[0px] w-full"
+              >
+                <div class="flex flex-col gap-3">
+                  <div class="my-select" style="width: 100%">
+                    <select id="KeySelect">
+                      <option value="0">Выберите тональность:</option>
+                      <option value="major">Мажорная</option>
+                      <option value="minor">Минорная</option>
+                    </select>
+                  </div>
+                  <div class="my-select" style="width: 100%">
+                    <select id="GenreSelect">
+                      <option value="0">Выберите жанр:</option>
+                      <option value="lofi">Lo-Fi</option>
+                      <option value="victhun">VicThun</option>
+                    </select>
+                  </div>
+                </div>
+                <button
+                  class="bg-black h-[42px] text-white mt-3 sm:mt-[0px]"
+                  type="submit"
+                  id="SubmitButton"
+                >
+                  Сгенерировать
+                </button>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -233,6 +262,73 @@
       </div>
     </main>
     <footer></footer>
+    <script>
+      const x = document.getElementsByClassName("my-select");
+      const l = x.length;
+      for (let i = 0; i < l; i++) {
+        const selElmnt = x[i].getElementsByTagName("select")[0];
+        const ll = selElmnt.length;
+        const a = document.createElement("DIV");
+        a.setAttribute("class", "select-selected");
+        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+        x[i].appendChild(a);
+        const b = document.createElement("DIV");
+        b.setAttribute("class", "select-items select-hide");
+        for (let j = 1; j < ll; j++) {
+          const c = document.createElement("DIV");
+          c.innerHTML = selElmnt.options[j].innerHTML;
+          c.addEventListener("click", function (e) {
+            const s =
+              this.parentNode.parentNode.getElementsByTagName("select")[0];
+            const sl = s.length;
+            const h = this.parentNode.previousSibling;
+            for (let i = 0; i < sl; i++) {
+              if (s.options[i].innerHTML == this.innerHTML) {
+                s.selectedIndex = i;
+                h.innerHTML = this.innerHTML;
+                const y =
+                  this.parentNode.getElementsByClassName("same-as-selected");
+                const yl = y.length;
+                for (let k = 0; k < yl; k++) {
+                  y[k].removeAttribute("class");
+                }
+                this.setAttribute("class", "same-as-selected");
+                break;
+              }
+            }
+            h.click();
+          });
+          b.appendChild(c);
+        }
+        x[i].appendChild(b);
+        a.addEventListener("click", function (e) {
+          e.stopPropagation();
+          closeAllSelect(this);
+          this.nextSibling.classList.toggle("select-hide");
+          this.classList.toggle("select-arrow-active");
+        });
+      }
+      function closeAllSelect(elmnt) {
+        const arrNo = [];
+        const x = document.getElementsByClassName("select-items");
+        const y = document.getElementsByClassName("select-selected");
+        const xl = x.length;
+        const yl = y.length;
+        for (let i = 0; i < yl; i++) {
+          if (elmnt == y[i]) {
+            arrNo.push(i);
+          } else {
+            y[i].classList.remove("select-arrow-active");
+          }
+        }
+        for (let i = 0; i < xl; i++) {
+          if (arrNo.indexOf(i)) {
+            x[i].classList.add("select-hide");
+          }
+        }
+      }
+      document.addEventListener("click", closeAllSelect);
+    </script>
     <script>
       function openNavMenu() {
         const x = document.getElementById("MobileNavMenu");
@@ -248,15 +344,38 @@
           o.style.display = "flex";
         }
       }
-      function getMelody() {
-        return new Promise((resolve, reject) => {});
-      }
+    </script>
+    <script>
       function getChoosedNote() {
         const p = document.getElementById("ChoosedNote");
         p.innerHTML = document.querySelector(
           'input[name="notes"]:checked'
         ).value;
       }
+    </script>
+    <script>
+      function getMelody(e) {
+        e.preventDefault();
+        try {
+          const key = document.getElementById("KeySelect").value;
+          const genre = document.getElementById("GenreSelect").value;
+          const note = document.querySelector(
+            'input[name="notes"]:checked'
+          ).value;
+          if (!key || key == 0) alert("Укажите тональность");
+          else if (!genre || genre == 0) alert("Укажите жанр");
+          else if (!note) alert("Укажите ноту");
+          else
+            window.location.replace(
+              `https://neuromidi.ru/create-melody?note=${note}&key=${key}&genre=${genre}`
+            );
+        } catch {
+          alert("Укажите ноту!");
+        }
+      }
+      document
+        .getElementById("SubmitButton")
+        .addEventListener("click", getMelody, false);
     </script>
   </body>
 </html>
