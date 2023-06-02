@@ -1,3 +1,4 @@
 /node_modules
 /public/midi/*
 /public/music/*
+music.db
