@@ -19,7 +19,7 @@ app.get("/create-melody", async (req, res) => {
   const url = `/${note}_${key}_${genre}_${timestamp}.mp3`;
   try {
     const { stdout, stderr } = await exec(
-      `python __init__.py ${note} ${key} ${genre} ${timestamp}`
+      `python3 __init__.py ${note} ${key} ${genre} ${timestamp}`
     );
     console.log("stdout:", stdout);
     console.log("stderr:", stderr);
