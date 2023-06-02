@@ -17,26 +17,27 @@ app.get("/create-melody", async (req, res) => {
   const genre = req.query.genre;
   const timestamp = new Date().getTime();
   const url = `/${note}_${key}_${genre}_${timestamp}.mp3`;
-  const { stdout, stderr } = await exec(
-    `python __init__.py ${note} ${key} ${genre} ${timestamp}`
-  )
-    .then(() => {
-      try {
-        const sql = `INSERT INTO music (url) values (?)`;
-        const insert = db.prepare(sql);
-        const addMusic = db.transaction(() => {
-          insert.run(url);
-        });
-        addMusic();
-      } catch {
-        if (!db.inTransaction) throw err;
-      }
-      res.redirect("/?url=" + url);
-    })
-    .catch(() => {
-      res.status(500).json({ message: "Something went wrong!" });
-    });
-  console.log(stdout, stderr);
+  try {
+    const { stdout, stderr } = await exec(
+      `python __init__.py ${note} ${key} ${genre} ${timestamp}`
+    );
+    console.log("stdout:", stdout);
+    console.log("stderr:", stderr);
+    try {
+      const sql = `INSERT INTO music (url) values (?)`;
+      const insert = db.prepare(sql);
+      const addMusic = db.transaction(() => {
+        insert.run(url);
+      });
+      addMusic();
+    } catch {
+      if (!db.inTransaction) throw err;
+    }
+    res.redirect("/?url=" + url);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: "Something went wrong!" });
+  }
 });
 app.get("/", (req, res) => {
   if (req.query.url)
