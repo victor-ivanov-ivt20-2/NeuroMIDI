@@ -19,7 +19,7 @@ app.get("/create-melody", async (req, res) => {
   const url = `/${note}_${key}_${genre}_${timestamp}.mp3`;
   try {
     const { stdout, stderr } = await exec(
-      `python3 __init__.py ${note} ${key} ${genre} ${timestamp}`
+      `python __init__.py ${note} ${key} ${genre} ${timestamp}`
     );
     console.log("stdout:", stdout);
     console.log("stderr:", stderr);
@@ -39,12 +39,48 @@ app.get("/create-melody", async (req, res) => {
     res.status(500).json({ message: "Something went wrong!" });
   }
 });
+
+function formatDate(date) {
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  return `${hour}:${minute} ${day}.${month}.${year}`;
+}
+
 app.get("/", (req, res) => {
-  if (req.query.url)
+  let audios = [];
+  try {
+    const sql = `SELECT url FROM music limit 5`;
+    const insert = db.prepare(sql).all();
+    for (let i = 0; i < insert.length; i++) {
+      const name = insert[i].url.split("_");
+      insert[i].name = `${name[0].replace("/", "")}${name[1]}`;
+      insert[i].genre = name[2];
+      const bad_date = name[3].replace(".mp3", "");
+      const date = new Date(parseInt(bad_date));
+      insert[i].date = formatDate(date);
+      audios = insert;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+
+  if (req.query.url) {
+    const name = req.query.url.split("_");
+    const bad_date = name[3].replace(".mp3", "");
     res.render("index.hbs", {
       audio_url: req.query.url,
+      name: `${name[0].replace("/", "")}${name[1]}`,
+      genre: name[2],
+      date: formatDate(new Date(parseInt(bad_date))),
+      audios: audios,
     });
-  else res.sendFile(path.join(__dirname + "/views/index.html"));
+  } else
+    res.render("index.hbs", {
+      audios: audios,
+    });
 });
 
 app.listen(PORT, () => {

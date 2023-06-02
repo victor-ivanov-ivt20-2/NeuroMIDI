@@ -515,6 +515,9 @@ video {
 .mr-2 {
   margin-right: 0.5rem;
 }
+.mt-2 {
+  margin-top: 0.5rem;
+}
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -569,6 +572,9 @@ video {
 .justify-between {
   justify-content: space-between;
 }
+.gap-1 {
+  gap: 0.25rem;
+}
 .gap-3 {
   gap: 0.75rem;
 }
@@ -603,6 +609,10 @@ video {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -613,6 +623,13 @@ video {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.font-bold {
+  font-weight: 700;
 }
 .font-medium {
   font-weight: 500;
@@ -780,7 +797,9 @@ video {
 .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
-
+audio::-webkit-media-controls-panel {
+  background-color: white;
+}
 @media (min-width: 640px) {
 
   .sm\:mt-\[0px\] {

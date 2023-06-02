@@ -1,300 +1,360 @@
-<!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet" />
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles/normalize.css" />
     <link rel="stylesheet" href="./styles/tailwind.css" />
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="shortcut icon" href="./favicon.svg" type="image/x-icon" />
     <title>NeuroMidi: Создай midi с NeuroMidi</title>
     <style>
-        body {
-            font-family: "Montserrat", sans-serif;
-        }
+      body { font-family: "Montserrat", sans-serif; }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="border-b-2 mb-5 relative bg-white" style="z-index: 100">
-        <div class="my_container">
-            <div class="flex justify-between items-center px-2 h-[115px] sm:px-[0px]">
-                <a href="/">
-                    <image src="./assets/logo.svg" width="132" height="80" alt="LOGO" />
-                </a>
-                <nav>
-                    <ul class="hidden sm:flex gap-8 font-medium text-lg">
-                        <li>
-                            <a href="#main">ГЛАВНАЯ</a>
-                        </li>
-                        <li>
-                            <a href="#about">О ПРОЕКТЕ</a>
-                        </li>
-                        <li>
-                            <a href="#contacts">КОНТАКТЫ</a>
-                        </li>
-                    </ul>
-                    <button class="sm:hidden flex mr-2" onclick="openNavMenu()">
-                        <div class="flex gap-[6px] flex-col" id="NavMenuOpenButton">
-                            <div class="h-[6px] w-[40px] bg-black"></div>
-                            <div class="h-[6px] w-[40px] bg-black"></div>
-                            <div class="h-[6px] w-[40px] bg-black"></div>
-                        </div>
-                        <div id="NavMenuExitButton" style="display: none">
-                            <img src="/assets/exit.svg" alt="" width="40" />
-                        </div>
-                    </button>
-                </nav>
-            </div>
+      <div class="my_container">
+        <div
+          class="flex justify-between items-center px-2 h-[115px] sm:px-[0px]"
+        >
+          <a href="/">
+            <image src="./assets/logo.svg" width="132" height="80" alt="LOGO" />
+          </a>
+          <nav>
+            <ul class="hidden sm:flex gap-8 font-medium text-lg">
+              <li>
+                <a href="#main">ГЛАВНАЯ</a>
+              </li>
+              <li>
+                <a href="#about">О ПРОЕКТЕ</a>
+              </li>
+              <li>
+                <a href="#contacts">КОНТАКТЫ</a>
+              </li>
+            </ul>
+            <button class="sm:hidden flex mr-2" onclick="openNavMenu()">
+              <div class="flex gap-[6px] flex-col" id="NavMenuOpenButton">
+                <div class="h-[6px] w-[40px] bg-black"></div>
+                <div class="h-[6px] w-[40px] bg-black"></div>
+                <div class="h-[6px] w-[40px] bg-black"></div>
+              </div>
+              <div id="NavMenuExitButton" style="display: none">
+                <img src="/assets/exit.svg" alt="" width="40" />
+              </div>
+            </button>
+          </nav>
         </div>
+      </div>
     </header>
-    <ul id="MobileNavMenu"
-        class="absolute left-0 bg-black flex flex-col justify-between items-center w-[100dvw] text-white gap-8 py-6 transition-all duration-300 ease-in-out z-10"
-        style="top: -80px">
-        <li>
-            <a onclick="openNavMenu()" href="#main">ГЛАВНАЯ</a>
-        </li>
-        <li>
-            <a onclick="openNavMenu()" href="#about">О ПРОЕКТЕ</a>
-        </li>
-        <li>
-            <a onclick="openNavMenu()" href="#contacts">КОНТАКТЫ</a>
-        </li>
+    <ul
+      id="MobileNavMenu"
+      class="sm:hidden absolute left-0 bg-black flex flex-col justify-between items-center w-[100dvw] text-white gap-8 py-6 transition-all duration-300 ease-in-out z-10"
+      style="top: -80px"
+    >
+      <li>
+        <a onclick="openNavMenu()" href="#main">ГЛАВНАЯ</a>
+      </li>
+      <li>
+        <a onclick="openNavMenu()" href="#about">О ПРОЕКТЕ</a>
+      </li>
+      <li>
+        <a onclick="openNavMenu()" href="#contacts">КОНТАКТЫ</a>
+      </li>
     </ul>
     <main>
-        <div class="my_container flex flex-col items-center">
-            <section class="sm:w-full" id="main">
-                <div class="sm:w-full">
-                    <div class="get__melody__form sm:w-full sm:flex sm:justify-between sm:gap-4">
-                        <div class="flex items-center flex-col relative">
-                            <div class="flex gap-4 items-center midi__base w-[320px] h-10 bg-black">
-                                <div
-                                    class="w-[28px] h-[28px] border-2 border-white bg-black text-white ml-[6px] text-center">
-                                    <span id="ChoosedNote"></span>
-                                </div>
-                                <span class="text-white">Выберите ноту тональности</span>
-                            </div>
-                            <div class="flex relative">
-                                <div class="white__note">
-                                    <input class="hidden" type="radio" name="notes" id="C" value="C"
-                                        onclick="getChoosedNote()" />
-                                    <label for="C">C</label>
-                                </div>
-                                <div class="white__note">
-                                    <input class="hidden" type="radio" name="notes" id="D" value="D"
-                                        onclick="getChoosedNote()" />
-                                    <label for="D">D</label>
-                                </div>
-                                <div class="white__note">
-                                    <input class="hidden" type="radio" name="notes" id="E" value="E"
-                                        onclick="getChoosedNote()" />
-                                    <label for="E">E</label>
-                                </div>
-                                <div class="white__note">
-                                    <input class="hidden" type="radio" name="notes" id="F" value="F"
-                                        onclick="getChoosedNote()" />
-                                    <label for="F">F</label>
-                                </div>
-                                <div class="white__note">
-                                    <input class="hidden" type="radio" name="notes" id="G" value="G"
-                                        onclick="getChoosedNote()" />
-                                    <label for="G">G</label>
-                                </div>
-                                <div class="white__note">
-                                    <input class="hidden" type="radio" name="notes" id="A" value="A"
-                                        onclick="getChoosedNote()" />
-                                    <label for="A">A</label>
-                                </div>
-                                <div class="white__note">
-                                    <input class="hidden" type="radio" name="notes" id="B" value="B"
-                                        onclick="getChoosedNote()" />
-                                    <label for="B">B</label>
-                                </div>
-                                <div class="left-[28px] black_note">
-                                    <input class="hidden" type="radio" name="notes" id="C#" value="C#"
-                                        onclick="getChoosedNote()" />
-                                    <label for="C#">C#</label>
-                                </div>
-                                <div class="left-[72px] black_note">
-                                    <input class="hidden" type="radio" name="notes" id="D#" value="D#"
-                                        onclick="getChoosedNote()" />
-                                    <label for="D#">D#</label>
-                                </div>
-                                <div class="left-[160px] black_note">
-                                    <input class="hidden" type="radio" name="notes" id="F#" value="F#"
-                                        onclick="getChoosedNote()" />
-                                    <label for="F#">F#</label>
-                                </div>
-                                <div class="left-[204px] black_note">
-                                    <input class="hidden" type="radio" name="notes" id="G#" value="G#"
-                                        onclick="getChoosedNote()" />
-                                    <label for="G#">G#</label>
-                                </div>
-                                <div class="left-[248px] black_note">
-                                    <input class="hidden" type="radio" name="notes" id="A#" value="A#"
-                                        onclick="getChoosedNote()" />
-                                    <label for="A#">A#</label>
-                                </div>
-                            </div>
-                            <div class="absolute bg-black -z-10 w-full h-full"></div>
-                        </div>
-                        <div class="flex flex-col justify-between mt-3 sm:mt-[0px] w-full">
-                            <div class="flex flex-col gap-3">
-                                <div class="my-select" style="width: 100%">
-                                    <select id="KeySelect">
-                                        <option value="0">Выберите тональность:</option>
-                                        <option value="major">Мажорная</option>
-                                        <option value="minor">Минорная</option>
-                                    </select>
-                                </div>
-                                <div class="my-select" style="width: 100%">
-                                    <select id="GenreSelect">
-                                        <option value="0">Выберите жанр:</option>
-                                        <option value="lofi">Lo-Fi</option>
-                                        <option value="victhun">VicThun</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button class="bg-black h-[42px] text-white mt-3 sm:mt-[0px]" type="submit"
-                                id="SubmitButton">
-                                Сгенерировать
-                            </button>
-                        </div>
+      <div class="my_container flex flex-col items-center">
+        <section class="sm:w-full" id="main">
+          <div class="sm:w-full">
+            <div
+              class="get__melody__form sm:w-full sm:flex sm:justify-between sm:gap-4"
+            >
+              <div class="flex items-center flex-col relative">
+                <div
+                  class="flex gap-4 items-center midi__base w-[320px] h-10 bg-black"
+                >
+                  <div
+                    class="w-[28px] h-[28px] border-2 border-white bg-black text-white ml-[6px] text-center"
+                  >
+                    <span id="ChoosedNote"></span>
+                  </div>
+                  <span class="text-white">Выберите ноту тональности</span>
+                </div>
+                <div class="flex relative">
+                  <div class="white__note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="C"
+                      value="C"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="C">C</label>
+                  </div>
+                  <div class="white__note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="D"
+                      value="D"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="D">D</label>
+                  </div>
+                  <div class="white__note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="E"
+                      value="E"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="E">E</label>
+                  </div>
+                  <div class="white__note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="F"
+                      value="F"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="F">F</label>
+                  </div>
+                  <div class="white__note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="G"
+                      value="G"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="G">G</label>
+                  </div>
+                  <div class="white__note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="A"
+                      value="A"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="A">A</label>
+                  </div>
+                  <div class="white__note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="B"
+                      value="B"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="B">B</label>
+                  </div>
+                  <div class="left-[28px] black_note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="C#"
+                      value="C#"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="C#">C#</label>
+                  </div>
+                  <div class="left-[72px] black_note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="D#"
+                      value="D#"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="D#">D#</label>
+                  </div>
+                  <div class="left-[160px] black_note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="F#"
+                      value="F#"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="F#">F#</label>
+                  </div>
+                  <div class="left-[204px] black_note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="G#"
+                      value="G#"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="G#">G#</label>
+                  </div>
+                  <div class="left-[248px] black_note">
+                    <input
+                      class="hidden"
+                      type="radio"
+                      name="notes"
+                      id="A#"
+                      value="A#"
+                      onclick="getChoosedNote()"
+                    />
+                    <label for="A#">A#</label>
+                  </div>
+                </div>
+                <div class="absolute bg-black -z-10 w-full h-full"></div>
+              </div>
+              <div
+                class="flex flex-col justify-between mt-3 sm:mt-[0px] w-full"
+              >
+                <div class="flex flex-col gap-3">
+                  <div class="my-select" style="width: 100%">
+                    <select id="KeySelect">
+                      <option value="0">Выберите тональность:</option>
+                      <option value="major">Мажорная</option>
+                      <option value="minor">Минорная</option>
+                    </select>
+                  </div>
+                  <div class="my-select" style="width: 100%">
+                    <select id="GenreSelect">
+                      <option value="0">Выберите жанр:</option>
+                      <option value="lofi">Lo-Fi</option>
+                      <option value="victhun">VicThun</option>
+                    </select>
+                  </div>
+                </div>
+                <button
+                  class="bg-black h-[42px] text-white mt-3 sm:mt-[0px]"
+                  type="submit"
+                  id="SubmitButton"
+                >
+                  Сгенерировать
+                </button>
+              </div>
+            </div>
+          </div>
+          <div>
+            {{#if audio_url}}
+              <div class="flex flex-col mt-2">
+                <h1 class="text-center text-xl font-bold">Готово!</h1>
+                <audio style="width: 100%; height: 50px" controls="true"
+                    <source src="/music{{audio_url}}" type="audio/mpeg">
+                    Your Browser Does Not Support Radio
+                    </audio>
+                <div class="flex justify-between mt-2">
+                    <div class="flex flex-col gap-1">
+                        <span>Тональность: {{this.name}}</span>
+                        <span>Жанр: {{this.genre}}</span>
                     </div>
+                    <span>{{this.date}}</span>
                 </div>
-                <div>
-                    <audio controls src="/music/{{audio_url}}"></audio>
+              </div>
+            {{/if}}
+
+            <div class="flex flex-col gap-4 px-5">
+              {{#each audios}}
+              <div class="flex flex-col">
+                
+                <audio style="width: 100%; height: 50px" controls="true"
+                    <source src="/music{{this.url}}" type="audio/mpeg">
+                    Your Browser Does Not Support Radio</audio>
+                <div class="flex justify-between mt-2">
+                    <div class="flex flex-col gap-1">
+                        <span>Тональность: {{this.name}}</span>
+                        <span>Жанр: {{this.genre}}</span>
+                    </div>
+                    <span>{{this.date}}</span>
                 </div>
-            </section>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </section>
 
-            <section id="about"></section>
+        <section id="about"></section>
 
-            <section id="contacts"></section>
-        </div>
+        <section id="contacts"></section>
+      </div>
     </main>
     <footer></footer>
     <script>
-        const x = document.getElementsByClassName("my-select");
-        const l = x.length;
-        for (let i = 0; i < l; i++) {
-            const selElmnt = x[i].getElementsByTagName("select")[0];
-            const ll = selElmnt.length;
-            const a = document.createElement("DIV");
-            a.setAttribute("class", "select-selected");
-            a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-            x[i].appendChild(a);
-            const b = document.createElement("DIV");
-            b.setAttribute("class", "select-items select-hide");
-            for (let j = 1; j < ll; j++) {
-                const c = document.createElement("DIV");
-                c.innerHTML = selElmnt.options[j].innerHTML;
-                c.addEventListener("click", function (e) {
-                    const s =
-                        this.parentNode.parentNode.getElementsByTagName("select")[0];
-                    const sl = s.length;
-                    const h = this.parentNode.previousSibling;
-                    for (let i = 0; i < sl; i++) {
-                        if (s.options[i].innerHTML == this.innerHTML) {
-                            s.selectedIndex = i;
-                            h.innerHTML = this.innerHTML;
-                            const y =
-                                this.parentNode.getElementsByClassName("same-as-selected");
-                            const yl = y.length;
-                            for (let k = 0; k < yl; k++) {
-                                y[k].removeAttribute("class");
-                            }
-                            this.setAttribute("class", "same-as-selected");
-                            break;
-                        }
-                    }
-                    h.click();
-                });
-                b.appendChild(c);
-            }
-            x[i].appendChild(b);
-            a.addEventListener("click", function (e) {
-                e.stopPropagation();
-                closeAllSelect(this);
-                this.nextSibling.classList.toggle("select-hide");
-                this.classList.toggle("select-arrow-active");
-            });
-        }
-        function closeAllSelect(elmnt) {
-            const arrNo = [];
-            const x = document.getElementsByClassName("select-items");
-            const y = document.getElementsByClassName("select-selected");
-            const xl = x.length;
-            const yl = y.length;
-            for (let i = 0; i < yl; i++) {
-                if (elmnt == y[i]) {
-                    arrNo.push(i);
-                } else {
-                    y[i].classList.remove("select-arrow-active");
-                }
-            }
-            for (let i = 0; i < xl; i++) {
-                if (arrNo.indexOf(i)) {
-                    x[i].classList.add("select-hide");
-                }
-            }
-        }
-        document.addEventListener("click", closeAllSelect);
+      const x = document.getElementsByClassName("my-select"); const l =
+      x.length; for (let i = 0; i < l; i++) { const selElmnt =
+      x[i].getElementsByTagName("select")[0]; const ll = selElmnt.length; const
+      a = document.createElement("DIV"); a.setAttribute("class",
+      "select-selected"); a.innerHTML =
+      selElmnt.options[selElmnt.selectedIndex].innerHTML; x[i].appendChild(a);
+      const b = document.createElement("DIV"); b.setAttribute("class",
+      "select-items select-hide"); for (let j = 1; j < ll; j++) { const c =
+      document.createElement("DIV"); c.innerHTML =
+      selElmnt.options[j].innerHTML; c.addEventListener("click", function (e) {
+      const s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+      const sl = s.length; const h = this.parentNode.previousSibling; for (let i
+      = 0; i < sl; i++) { if (s.options[i].innerHTML == this.innerHTML) {
+      s.selectedIndex = i; h.innerHTML = this.innerHTML; const y =
+      this.parentNode.getElementsByClassName("same-as-selected"); const yl =
+      y.length; for (let k = 0; k < yl; k++) { y[k].removeAttribute("class"); }
+      this.setAttribute("class", "same-as-selected"); break; } } h.click(); });
+      b.appendChild(c); } x[i].appendChild(b); a.addEventListener("click",
+      function (e) { e.stopPropagation(); closeAllSelect(this);
+      this.nextSibling.classList.toggle("select-hide");
+      this.classList.toggle("select-arrow-active"); }); } function
+      closeAllSelect(elmnt) { const arrNo = []; const x =
+      document.getElementsByClassName("select-items"); const y =
+      document.getElementsByClassName("select-selected"); const xl = x.length;
+      const yl = y.length; for (let i = 0; i < yl; i++) { if (elmnt == y[i]) {
+      arrNo.push(i); } else { y[i].classList.remove("select-arrow-active"); } }
+      for (let i = 0; i < xl; i++) { if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide"); } } }
+      document.addEventListener("click", closeAllSelect);
     </script>
     <script>
-        function openNavMenu() {
-            const x = document.getElementById("MobileNavMenu");
-            const o = document.getElementById("NavMenuOpenButton");
-            const e = document.getElementById("NavMenuExitButton");
-            if (x.style.top === "-80px") {
-                x.style.top = "115px";
-                e.style.display = "block";
-                o.style.display = "none";
-            } else {
-                x.style.top = "-80px";
-                e.style.display = "none";
-                o.style.display = "flex";
-            }
-        }
+      function openNavMenu() { const x =
+      document.getElementById("MobileNavMenu"); const o =
+      document.getElementById("NavMenuOpenButton"); const e =
+      document.getElementById("NavMenuExitButton"); if (x.style.top === "-80px")
+      { x.style.top = "115px"; e.style.display = "block"; o.style.display =
+      "none"; } else { x.style.top = "-80px"; e.style.display = "none";
+      o.style.display = "flex"; } }
     </script>
     <script>
-        function getChoosedNote() {
-            const p = document.getElementById("ChoosedNote");
-            p.innerHTML = document.querySelector(
-                'input[name="notes"]:checked'
-            ).value;
-        }
+      function getChoosedNote() { const p =
+      document.getElementById("ChoosedNote"); p.innerHTML =
+      document.querySelector( 'input[name="notes"]:checked' ).value; }
     </script>
     <script>
-        function getMelody(e) {
-            e.preventDefault();
-            try {
-                const key = document.getElementById("KeySelect").value;
-                const genre = document.getElementById("GenreSelect").value;
-                const note = document.querySelector(
-                    'input[name="notes"]:checked'
-                ).value;
-                if (key == undefined || key == 0) alert("Укажите тональность");
-                else if (genre == undefined || genre == 0) alert("Укажите жанр");
-                else if (!note) alert("Укажите ноту");
-                else
-                    window.location.replace(
-                        `https://neuromidi.ru/create-melody?note=${note}&key=${key}&genre=${genre}`
-                    );
-            } catch {
-                alert("Укажите ноту!");
-            }
-        }
-        document
-            .getElementById("SubmitButton")
-            .addEventListener("click", getMelody, false);
+      function getMelody(e) { e.preventDefault(); try { const key =
+      document.getElementById("KeySelect").value; const genre =
+      document.getElementById("GenreSelect").value; const note =
+      document.querySelector( 'input[name="notes"]:checked' ).value; if (key ==
+      undefined || key == 0) alert("Укажите тональность"); else if (genre ==
+      undefined || genre == 0) alert("Укажите жанр"); else if (!note)
+      alert("Укажите ноту"); else window.location.replace(
+      `http://localhost:8080/create-melody?note=${note}&key=${key}&genre=${genre}`
+      ); } catch { alert("Укажите ноту!"); } } document
+      .getElementById("SubmitButton") .addEventListener("click", getMelody,
+      false);
     </script>
-</body>
+  </body>
 
 </html>
