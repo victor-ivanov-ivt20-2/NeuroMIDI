@@ -2,6 +2,11 @@ FROM node:18
 
 # RUN apk add --update python
 RUN apt-get update || : && apt-get install python -y
+RUN apt-get install -y fluidsynth
+
+RUN pip install mido
+RUN pip install midi2audio
+
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
