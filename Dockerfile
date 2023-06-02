@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:18
 
 RUN apk add --update python
 # RUN apt-get update || : && apt-get install python -y
