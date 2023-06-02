@@ -3,7 +3,9 @@ FROM node:18
 # RUN apk add --update python
 RUN apt-get update || : && apt-get install python -y
 RUN apt-get install -y fluidsynth
-
+RUN apt-get update && apt-get install -y \
+    php5-mcrypt \
+    python-pip
 RUN pip install mido
 RUN pip install midi2audio
 
