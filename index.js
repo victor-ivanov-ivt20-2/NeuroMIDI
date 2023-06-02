@@ -17,7 +17,9 @@ app.get("/create-melody", async (req, res) => {
   const genre = req.query.genre;
   const timestamp = new Date().getTime();
   const url = `/${note}_${key}_${genre}_${timestamp}.mp3`;
-  await exec(`python __init__.py ${note} ${key} ${genre} ${timestamp}`)
+  const { stdout, stderr } = await exec(
+    `python __init__.py ${note} ${key} ${genre} ${timestamp}`
+  )
     .then(() => {
       try {
         const sql = `INSERT INTO music (url) values (?)`;
@@ -34,6 +36,7 @@ app.get("/create-melody", async (req, res) => {
     .catch(() => {
       res.status(500).json({ message: "Something went wrong!" });
     });
+  console.log(stdout, stderr);
 });
 app.get("/", (req, res) => {
   if (req.query.url)
