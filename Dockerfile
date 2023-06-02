@@ -1,5 +1,5 @@
 FROM node:18-alpine
-
+RUN apt-get update || : && apt-get install python -y
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
