@@ -18,7 +18,7 @@ module.exports = {
     return new Promise(async (resolve, reject) => {
       try {
         const { stdout, stderr } = await exec(
-          `python __init__.py ${props.note} ${props.key} ${props.genre} ${props.timestamp}`
+          `python3 __init__.py ${props.note} ${props.key} ${props.genre} ${props.timestamp}`
         );
         console.log("stdout:", stdout);
         console.log("stderr:", stderr);
