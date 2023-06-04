@@ -47,10 +47,6 @@ def main():
     BS = 128
     hist = model.fit(input_text, target_text, batch_size=BS, epochs=EP)
     model.save(os.getcwd() + '/h5/victhun.h5')
-    new_song = generate_text(model, seq_length, ind_to_char, 32)
-    input_midi = mido.MidiFile( os.getcwd() + '/midi/1.mid', clip=True)
-    mid = Midi(input_midi)
-    mid.generateMelody(new_song, 0)
 
 def generate_text(model, seq_length, ind_to_char, generation_length=100):
     input_eval = np.array([0])

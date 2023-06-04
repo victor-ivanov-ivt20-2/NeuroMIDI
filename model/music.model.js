@@ -14,11 +14,24 @@ function formatDate(date) {
 }
 
 module.exports = {
+  createH5: () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const { stdout, stderr } = await exec(`python3 rnn.py`);
+        console.log("stdout:", stdout);
+        console.log("stderr:", stderr);
+        resolve({ message: "Ok!" });
+      } catch (e) {
+        console.log(e);
+        reject({ message: "Error" });
+      }
+    });
+  },
   createMelody: (props) => {
     return new Promise(async (resolve, reject) => {
       try {
         const { stdout, stderr } = await exec(
-          `python3 __init__.py ${props.note} ${props.key} ${props.genre} ${props.timestamp}`
+          `python3 ai.py ${props.note} ${props.key} ${props.genre} ${props.timestamp}`
         );
         console.log("stdout:", stdout);
         console.log("stderr:", stderr);
@@ -71,6 +84,7 @@ module.exports = {
           const bad_date = name[3].replace(".mp3", "");
           const date = new Date(parseInt(bad_date));
           insert[i].date = formatDate(date);
+          insert[i].midi = insert[i].url.replace(".mp3", ".mid");
           arr.push(insert[i]);
         }
         resolve(arr);
@@ -92,6 +106,7 @@ module.exports = {
       const bad_date = name[3].replace(".mp3", "");
       resolve({
         audio_url: props.url,
+        midi_url: props.url.replace(".mp3", ".mid"),
         name: `${name[0].replace("/", "")}${name[1]}`,
         genre: name[2],
         date: formatDate(new Date(parseInt(bad_date))),

@@ -17,4 +17,14 @@ router.get("/create-melody", async (req, res) => {
     });
 });
 
+router.get("/victhun", async (req, res) => {
+  await MusicModel.createH5()
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
