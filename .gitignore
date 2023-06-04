@@ -3,3 +3,4 @@
 /public/music/*
 /music.db
 /generated_midi/*
+/neuromidi.db

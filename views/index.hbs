@@ -350,7 +350,7 @@
       undefined || key == 0) alert("Укажите тональность"); else if (genre ==
       undefined || genre == 0) alert("Укажите жанр"); else if (!note)
       alert("Укажите ноту"); else window.location.replace(
-      `https://neuromidi.ru/create-melody?note=${note}&key=${key}&genre=${genre}`
+      `https://neuromidi.ru/music/create-melody?note=${note}&key=${key}&genre=${genre}`
       ); } catch { alert("Укажите ноту!"); } } document
       .getElementById("SubmitButton") .addEventListener("click", getMelody,
       false);
