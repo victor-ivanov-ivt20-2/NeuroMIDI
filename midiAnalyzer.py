@@ -1,4 +1,5 @@
 import mido as md
+import numpy as np
 import random
 import os
 
@@ -26,7 +27,13 @@ class Midi:
                 self.ticks = msg.numerator * 120
             print(msg)
         self.messages.append(md.MetaMessage('end_of_track', time=tick))
-    
+    def rnnMelody(self, notes):
+        self.messages.append(md.MetaMessage('set_tempo', tempo=self.tempo, time=0))
+        for i, note in enumerate(notes):
+            self.messages.append(md.Message('note_on', note=note, time=0))
+            self.messages.append(md.Message('note_off', note=note, time=240))
+        self.messages.append(md.MetaMessage('end_of_track', time=0))
+        return self.messages
     def myMelody(self):
         n = random.randint(10, 20)
         tonal = 69
@@ -65,6 +72,25 @@ class Midi:
                 output_messages.append(msg)
         return output_messages
                 
+    def getOnlyNote(self, input):
+        notes = np.array([])
+        for msg in input:    
+            if not msg.is_meta and msg.type == 'note_on':
+                notes = np.append(notes, msg.note)  
+        return notes
+                     
+    def generateMelody(self, notes, arr = []):
+        output_midi = md.MidiFile()
+        track = md.MidiTrack()
+        output_midi.tracks.append(track)
+        messages = self.rnnMelody(notes)
+        for msg in messages:
+            print(msg)
+        for msg in messages:
+            track.append(msg)
+        output_midi.save(os.getcwd() + '/generated_midi/new_midi.mid')
+        name = "{0}_{1}_{2}_{3}".format(arr[1], arr[2], arr[3], arr[4])
+        output_midi.save(os.getcwd() + '/public/midi/' + name + '.mid')
 
     def save(self, arr = []):
         output_midi = md.MidiFile()

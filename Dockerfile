@@ -6,6 +6,8 @@ RUN apt-get install -y fluidsynth
 RUN apt-get update && apt-get install -y python3-pip
 RUN pip install mido
 RUN pip install midi2audio
+RUN pip install tensorflow
+RUN pip install numpy
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 

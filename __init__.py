@@ -4,7 +4,7 @@ from midi2audio import FluidSynth
 from midiAnalyzer import Midi
 import os
 def main():
-    input_midi = mido.MidiFile( os.getcwd() + '/midi/2222.mid', clip=True)
+    input_midi = mido.MidiFile( os.getcwd() + '/midi/victhun/2222.mid', clip=True)
     mid = Midi(input_midi)
     #mid.analyze()
     mid.save(sys.argv)
